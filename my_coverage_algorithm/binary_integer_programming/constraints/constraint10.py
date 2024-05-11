@@ -1,6 +1,6 @@
 
 # Inequality constraint function
-def inequality_constraint(x, y, NT, CVR):
+def inequality_constraint3(x, y, v, NC, NT, NhD, NvD, NE, NA, CVR):
     # Calculate the sum of target values
     sum_targets = sum(y)
 
@@ -12,8 +12,12 @@ def inequality_constraint(x, y, NT, CVR):
     return sum_targets - rhs
 
 
-# Define the constraint
-constraint = {'type': 'ineq', 'fun': inequality_constraint}
+#def constraint10(y, NT, CVR):
+    #args = {'y': y, 'NT': NT, 'CVR': CVR}
 
-# Pass the constraint to scipy.optimize.minimize
-constraints = [constraint]
+    # Define the constraint
+    #constraint = {'type': 'ineq', 'fun': inequality_constraint}#, 'args': args
+
+    # Pass the constraint to scipy.optimize.minimize
+    #constraints = [constraint]
+    #return constraints

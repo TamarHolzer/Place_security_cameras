@@ -1,5 +1,5 @@
 # Inequality constraint function
-def inequality_constraint(x, v, y, NT, NC, NhD, NvD, NE, NA):
+def inequality_constraint2(x, y, v, NC, NT, NhD, NvD, NE, NA, CVR):
     # Iterate over all targets k
     for k in range(NT):
         # Initialize the sum of products
@@ -12,7 +12,9 @@ def inequality_constraint(x, v, y, NT, NC, NhD, NvD, NE, NA):
                     for e in range(NE):
                         for t in range(NA):
                             # Compute the product of decision variable x and other variable V
-                            sum_products += v[i, j, d, e, t, k] * x[i, j, d, e, t]
+                            v = v
+                            x = x
+                            sum_products += v[i][j][d][e][t][k] * x[i][j][d][e][t]
 
         # Compare the sum of products with the right-hand side
         # Return the difference, which should be non-positive for feasible points
@@ -22,13 +24,29 @@ def inequality_constraint(x, v, y, NT, NC, NhD, NvD, NE, NA):
     # If no violation is found, return 0
     return 0
 
-# Define the constraint
-constraint = {'type': 'ineq', 'fun': inequality_constraint}
 
-# Pass the constraint to scipy.optimize.minimize
-constraints = [constraint]
+# def constraint9(x, v, y, NC, NT, NhD, NvD, NE, NA):
+#     #args = {'x': x, 'v': v, 'y': y, 'NC': NC, 'NT': NT, 'NhD': NhD, 'NvD': NvD, 'NE': NE, 'NA': NA}
+#
+#     # Define the constraint
+#     constraint = {'type': 'ineq', 'fun': inequality_constraint}#, 'args': args
+#
+#     # Pass the constraint to scipy.optimize.minimize
+#     constraints = [constraint]
+#     return constraints
 
-print(constraints)
+
+
+
+
+
+
+
+
+
+
+
+#print(constraints)
 
 """# Inequality constraint function
 def inequality_constraint(x):
