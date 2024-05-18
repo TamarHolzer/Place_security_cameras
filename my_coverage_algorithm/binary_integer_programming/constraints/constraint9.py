@@ -1,5 +1,8 @@
 # Inequality constraint function
-def inequality_constraint2(x, y, v, NC, NT, NhD, NvD, NE, NA, CVR):
+import numpy
+def inequality_constraint2(x1, x, y, v, NC, NT, NhD, NvD, NE, NA):
+    #x_reshaped = numpy.reshape(x, (NC, NhD, NvD, NE, NA))
+
     # Iterate over all targets k
     for k in range(NT):
         # Initialize the sum of products

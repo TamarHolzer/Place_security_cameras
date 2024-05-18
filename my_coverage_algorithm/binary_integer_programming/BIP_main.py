@@ -27,23 +27,31 @@ def BIP_main():#x,v,y,nc, nhd, nvd, ne, na,nt
     CVR = 0.9
 
 
-    v = [[[[[[1 for k in range(NT)] for t in range(NA)] for e in range(NE)] for d in range(NvD)] for j in range(NhD)]
-    for i in range(NC)]
+    #v = [[[[[[1 for k in range(NT)] for t in range(NA)] for e in range(NE)] for d in range(NvD)] for j in range(NhD)]
+    #for i in range(NC)]
     # Initialize x as a multi-dimensional list with dimensions (NC, NhD, NvD, NE, NA)
-    x = [[[[[1 for t in range(NA)] for e in range(NE)] for d in range(NvD)] for j in range(NhD)] for i in range(NC)]
+    #x = [[[[[1 for t in range(NA)] for e in range(NE)] for d in range(NvD)] for j in range(NhD)] for i in range(NC)]
     y = [1 for k in range(NT)]
+    x = numpy.ones((NC, NhD, NvD, NE, NA))
+    v = numpy.ones((NC, NhD, NvD, NE, NA, NT))
 
     #x = [1, 1, 1, 1, 1]
     #y = [1, 1, 1, 1, 1]
     #v = [1, 1, 1, 1, 1]
     #כל אלו אמורים ליהיות גנרים לא פה!
 
+    #con8.inequality_constraint1(x, y, v, NC, NT, NhD, NvD, NE, NA, CVR)
+
+    obj_args = (x, NC, NhD, NvD, NE, NA)  # Arguments for the objective function
+    constraint1_args = (x, y, v, NC, NT, NhD, NvD, NE, NA)  # Arguments for constraint 1
+    constraint2_args = (x, y, v, NC, NT, NhD, NvD, NE, NA)  # Arguments for constraint 2
+    constraint3_args = (y, NT, CVR)  # Arguments for constraint 3
 
     #קבלתי את המאפינים
     #אילוצים
-    constraints = [{'type': 'ineq', 'fun': con8.inequality_constraint1},
-                   {'type': 'ineq', 'fun': con9.inequality_constraint2},
-                   {'type': 'ineq', 'fun': con10.inequality_constraint3}]
+    constraints = [{'type': 'ineq', 'fun': con8.inequality_constraint1, 'args': constraint1_args},
+                   {'type': 'ineq', 'fun': con9.inequality_constraint2, 'args': constraint2_args},
+                   {'type': 'ineq', 'fun': con10.inequality_constraint3, 'args': constraint3_args}]
 
     #פונקצית המטרה
     #objectFunction = obj.objective_function(NC, NhD, NvD, NE, NA)
@@ -55,9 +63,10 @@ def BIP_main():#x,v,y,nc, nhd, nvd, ne, na,nt
     #ניחוש התחלתי
     x0 = [1] * (NC * NhD * NvD * NE * NA * NT)
 #    , args=(NC, NT, NhD, NvD, NE, NA, CVR)
-    result = minimize(fun=obj.objective_function, x0=x0, args=(x, y, v, NC, NT, NhD, NvD, NE, NA, CVR), method='SLSQP',
+    result = minimize(fun=obj.objective_function, x0=x0, args=obj_args, method='SLSQP',
                       bounds=bounds, constraints=constraints)
+    print(result)
 
-
+    print("ללל")
 #, args=(x, y, v, NC, NT, NhD, NvD, NE, NA, CVR)
 BIP_main()

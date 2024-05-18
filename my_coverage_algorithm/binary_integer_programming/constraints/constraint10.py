@@ -1,6 +1,8 @@
 
 # Inequality constraint function
-def inequality_constraint3(x, y, v, NC, NT, NhD, NvD, NE, NA, CVR):
+import numpy
+def inequality_constraint3(x1, y, NT, CVR):
+
     # Calculate the sum of target values
     sum_targets = sum(y)
 
