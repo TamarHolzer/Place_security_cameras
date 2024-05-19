@@ -2,7 +2,7 @@
 import numpy
 import pulp
 
-
+#מבטיח שאף מטרה לא תכוסה על ידי יותר ממספר המצלמות.
 def inequality_constraint2(prob, x, y, v, NC, NT, NhD, NvD, NE, NA):
     for k in range(NT):
         prob += pulp.lpSum(v[i][j][d][e][t][k] * x[i, j, d, e, t] for i in range(NC) for j in range(NhD)

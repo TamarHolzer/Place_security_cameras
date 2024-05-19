@@ -1,4 +1,4 @@
-from unconsumed.touching_DS import ConnectingToSql as sql
+import ConnectingToSql as sql
 from unconsumed.DTO import users as user
 
 

@@ -3,13 +3,14 @@ import constraints.constraint9 as con9
 import constraints.constraint10 as con10
 import optimize_object as obj
 from scipy.optimize import minimize
-from my_coverage_algorithm import find_room
+from my_coverage_algorithm import find_room2
 import numpy
+
 def BIP_main():#x,v,y,nc, nhd, nvd, ne, na,nt
     #כל אלו אמורים ליהיות גנרים לא פה!
     a = [(0, 0), (9, 9), (6, 3)]
     # number of camera positions- מספר עמדות המצלמה
-    c = find_room.find_room_frame(a)
+    c = find_room2.find_room_frame(a)
     children_len = [len(child) for child in c]
     NC = sum(children_len)
     # number of horizontal orientations- מספר כיוונים אופקיים.
