@@ -3,7 +3,7 @@ import constraints.constraint9 as con9
 import constraints.constraint10 as con10
 import optimize_object as obj
 from scipy.optimize import minimize
-import find_room
+from my_coverage_algorithm import find_room
 import numpy
 def BIP_main():#x,v,y,nc, nhd, nvd, ne, na,nt
     #כל אלו אמורים ליהיות גנרים לא פה!
