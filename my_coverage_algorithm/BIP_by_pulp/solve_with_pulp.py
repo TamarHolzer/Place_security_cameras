@@ -6,6 +6,24 @@ import constraints.constraintP10 as con10
 import optimize_object_pulp
 
 
+def calculate_visibility_matrix(NC, NhD, NvD, NE, NA, NT):
+    # Placeholder: Replace this with actual visibility calculations
+    V = numpy.zeros((NC, NhD, NvD, NE, NA, NT))
+    # Assuming some logic to determine visibility
+    for i in range(NC):
+        for j in range(NhD):
+            for d in range(NvD):
+                for e in range(NE):
+                    for t in range(NA):
+                        for k in range(NT):
+                            # Example condition for visibility
+                            if is_visible(i, j, d, e, t, k):
+                                V[i][j][d][e][t][k] = 1
+    return V
+
+def is_visible(i, j, d, e, t, k):
+    # Replace with actual logic to determine if target k is visible
+    return True
 def solve_with_pulp(NC, NhD, NvD, NE, NA, NT, CVR):
     # Define the problem
     prob = pulp.LpProblem("Camera_Optimization", pulp.LpMinimize)
@@ -21,7 +39,7 @@ def solve_with_pulp(NC, NhD, NvD, NE, NA, NT, CVR):
     # CVR = 0.9
 
     # Assume V is a predefined 6-dimensional array that represents visibility
-    v = numpy.ones((NC, NhD, NvD, NE, NA, NT))
+    v = numpy.zeros((NC, NhD, NvD, NE, NA, NT))
 
     # Decision variables
     x = pulp.LpVariable.dicts("x", ((i, j, d, e, t) for i in range(NC) for j in range(NhD)

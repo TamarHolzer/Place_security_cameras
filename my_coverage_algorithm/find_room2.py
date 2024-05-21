@@ -1,5 +1,5 @@
 import math
-
+import numpy
 import matplotlib.pyplot as plt
 import drafts.show_polygon as polygon
 from drafts import show_polygon
@@ -75,20 +75,20 @@ def find_room_frame(allCordinated):
 # cordinates = [(0, 0), (0, 20), (20, 30), (20, 0)]
 # find_space(cordinates)
 
-def find_room_targets():  # allCordinated
-    targets = []
-    allCordinated = [[(0, 0), (0, 1), (0, 2)], [(5, 0), (8, 0), (9, 0)]]
-    point = 0
-    sublist = 1
-    while (allCordinated[allCordinated][sublist] != None):
-        while (allCordinated[0][sublist] != None):
-            a = find_room_frame(allCordinated[0][point], allCordinated[sublist][point])
-            targets.append(a)
-            point += 1
-
-        sublist += 1
-
-    return targets
+# def find_room_targets():  # allCordinated
+#     targets = []
+#     allCordinated = [[(0, 0), (0, 1), (0, 2)], [(5, 0), (8, 0), (9, 0)]]
+#     point = 0
+#     sublist = 1
+#     while (allCordinated[allCordinated][sublist] != None):
+#         while (allCordinated[0][sublist] != None):
+#             a = find_room_frame(allCordinated[0][point], allCordinated[sublist][point])
+#             targets.append(a)
+#             point += 1
+#
+#         sublist += 1
+#
+#     return targets
 
 
 # find_room_targets()
@@ -142,3 +142,35 @@ def plot_hexagonal_grid(radius):
     plot_hexagonal_grid(radius)
 
 #print(generate_hexagonal_grid(50))
+
+def find_room_targets(walls):
+    if not walls or len(walls) < 2:
+        raise ValueError("There should be at least two walls to calculate intermediate points.")
+
+    interval = 0.5
+
+    first_wall = walls[0]
+    other_walls = walls[1:]
+
+    intermediate_points = {}
+
+    for point1 in first_wall:
+        x1, y1 = point1
+        intermediate_points[point1] = []
+
+        for wall in other_walls:
+            for point2 in wall:
+                x2, y2 = point2
+                vector = numpy.array([x2 - x1, y2 - y1])
+                distance = numpy.linalg.norm(vector)
+                num_intervals = int(distance // interval)
+
+                for i in range(1, num_intervals):
+                    fraction = i * interval / distance
+                    intermediate_point = (x1 + fraction * vector[0], y1 + fraction * vector[1])
+                    intermediate_points[point1].append(intermediate_point)
+
+    return intermediate_points
+
+#allCordinated = [[(0, 0), (0, 1), (0, 2), (0, 3)], [(5, 0), (8, 0), (9, 0),(10, 0)], [(8,8)]]
+#print(find_room_target(allCordinated))
