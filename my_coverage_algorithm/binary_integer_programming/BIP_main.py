@@ -3,7 +3,7 @@ import constraints.constraint9 as con9
 import constraints.constraint10 as con10
 import optimize_object as obj
 from scipy.optimize import minimize
-from my_coverage_algorithm import find_room2
+from my_coverage_algorithm.BIP_by_pulp import find_room2
 import numpy
 
 def BIP_main():#x,v,y,nc, nhd, nvd, ne, na,nt

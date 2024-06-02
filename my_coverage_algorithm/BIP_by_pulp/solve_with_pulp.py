@@ -1,9 +1,10 @@
 import pulp
-import numpy
 import constraints.constraintP8 as con8
 import constraints.constraintP9 as con9
 import constraints.constraintP10 as con10
 import optimize_object_pulp
+from my_coverage_algorithm import initilize_v_with_fov
+
 
 def solve_with_pulp(NC, NhD, NvD, NE, NA, NT, CVR):
     # Define the problem
@@ -20,7 +21,7 @@ def solve_with_pulp(NC, NhD, NvD, NE, NA, NT, CVR):
     # CVR = 0.9
 
     # Assume V is a predefined 6-dimensional array that represents visibility
-    v = numpy.zeros((NC, NhD, NvD, NE, NA, NT))
+    v = initilize_v_with_fov.initilize_v_with_fov()
 
     # Decision variables
     x = pulp.LpVariable.dicts("x", ((i, j, d, e, t) for i in range(NC) for j in range(NhD)

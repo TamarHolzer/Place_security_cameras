@@ -1,21 +1,26 @@
 import solve_with_pulp
-from my_coverage_algorithm import find_room2
-import numpy
-def BIP_main():#x,v,y,nc, nhd, nvd, ne, na,nt
-    #כל אלו אמורים ליהיות גנרים לא פה!
-    a = [(0, 0), (9, 0), (9, 9), (0, 9)]
+import cameras.retrieving_the_cameras_data as dataFuncs
+from my_coverage_algorithm.BIP_by_pulp import find_room2
+
+
+# import numpy
+def BIP_main(list_of_tuples_with_the_xy_cordinates = [(0, 0), (9, 0), (9, 9), (0, 9)]):#x,v,y,nc, nhd, nvd, ne, na,nt
+    #שליפת נתוני המצלמות
+    dataCameras, numOfCameras = dataFuncs.get_all_cameras()
+
     # number of camera positions- מספר עמדות המצלמה
-    pointInWalls = find_room2.find_room_frame(a)
-    children_len = [len(child) for child in pointInWalls]
+    pointInWalls = find_room2.find_room_frame(list_of_tuples_with_the_xy_cordinates)#מיקומים אפשריים למצלמות
+    children_len = [len(child) for child in pointInWalls] #סכימת הנקודות
     NC = sum(children_len)
     # number of horizontal orientations- מספר כיוונים אופקיים.
     NhD = 2
     # number of vertical orientations- מספר כיוונים אנכיים
+    numOfVerticalOriens = 90 - dataCameras
     NvD = 2
     # number of heights- מספר גבהים
     NE = 1
     # number of camera types- מספר סוגי מצלמות
-    NA = 1
+    NA = numOfCameras
     # number of target positions- מספר עמדות יעד
     dirOfTheTargetPoints = find_room2.find_room_targets(pointInWalls)
     numOfTheTargetPoints = 0
