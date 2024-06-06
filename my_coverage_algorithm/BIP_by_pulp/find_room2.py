@@ -29,8 +29,8 @@ def find_line(x, y):
     x2, y2 = y[0], y[1]
 
     result = points_between_coordinates(x1, y1, x2, y2)
-    print("Points between ({}, {}) and ({}, {}) with a difference of 0.5:".format(x1, y1, x2, y2))
-    print(result)
+    #print("Points between ({}, {}) and ({}, {}) with a difference of 0.5:".format(x1, y1, x2, y2))
+    #print(result)
 
     # show_line(result)
     return result

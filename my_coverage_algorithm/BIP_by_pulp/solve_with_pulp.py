@@ -5,6 +5,9 @@ import constraints.constraintP10 as con10
 import optimize_object_pulp
 from my_coverage_algorithm import initilize_v_with_fov
 
+# import cameras.retrieving_the_cameras_data as dataFuncs
+# from my_coverage_algorithm.BIP_by_pulp import find_room2
+# from cameras import Camera
 
 def solve_with_pulp(NC, NhD, NvD, NE, NA, NT, CVR):
     # Define the problem

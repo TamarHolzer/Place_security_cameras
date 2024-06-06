@@ -116,32 +116,32 @@ def initilize_v_with_fov(dictionary_of_the_counters_paramerters, list_of_target_
 
     return v
 
-
-#הפעלה למחוק!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-wall = ((0, 0), (3, 0), (2, 2), (2, 0))
-c = find_room2.find_room_frame(wall)
-
-targets = find_room2.find_room_targets(c)
-unique_points = set()
-
-# Iterate through each sub-list in `c`
-for sublist in c:
-    # Iterate through each point in the sublist
-    for point in sublist:
-        # Add the point to the set of unique points
-        unique_points.add(point)
-
-# The size of the set is the count of distinct points
-numOfTargets = len(unique_points)
-
-NC = 8
-NhD = 2
-NvD = 2
-NE = 1
-NA = 1
-NT = numOfTargets
-CVR = 0.9
-
-the_counter_parameters = {'NC': NC, 'NhD': NhD, 'NvD': NvD, 'NE': NE, 'NA': NA, 'NT': NT, 'CVR': CVR}
-
-res = initilize_v_with_fov(the_counter_parameters, unique_points)
+#
+# #הפעלה למחוק!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# wall = ((0, 0), (3, 0), (2, 2), (2, 0))
+# c = find_room2.find_room_frame(wall)
+#
+# targets = find_room2.find_room_targets(c)
+# unique_points = set()
+#
+# # Iterate through each sub-list in `c`
+# for sublist in c:
+#     # Iterate through each point in the sublist
+#     for point in sublist:
+#         # Add the point to the set of unique points
+#         unique_points.add(point)
+#
+# # The size of the set is the count of distinct points
+# numOfTargets = len(unique_points)
+#
+# NC = 8
+# NhD = 2
+# NvD = 2
+# NE = 1
+# NA = 1
+# NT = numOfTargets
+# CVR = 0.9
+#
+# the_counter_parameters = {'NC': NC, 'NhD': NhD, 'NvD': NvD, 'NE': NE, 'NA': NA, 'NT': NT, 'CVR': CVR}
+#
+# res = initilize_v_with_fov(the_counter_parameters, unique_points)
