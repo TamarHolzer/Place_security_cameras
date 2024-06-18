@@ -1,8 +1,8 @@
 import math
 import numpy
 import matplotlib.pyplot as plt
-import drafts.show_polygon as polygon
-from drafts import show_polygon
+#import drafts.show_polygon as polygon
+#from drafts import show_polygon
 
 
 # מציאת הקו הישר בהפרשים של חצי
@@ -147,7 +147,7 @@ def find_room_targets(walls):
     if not walls or len(walls) < 2:
         raise ValueError("There should be at least two walls to calculate intermediate points.")
 
-    interval = 0.5
+    interval = 7
 
     first_wall = walls[0]
     other_walls = walls[1:]

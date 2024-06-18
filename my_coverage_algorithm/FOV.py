@@ -1,7 +1,10 @@
+import time
+
 import numpy as np
 
 # FOV
 def compute_fov(epsilon, theta1, theta2, psi, phi, T, x0, y0):
+    print("fov")
     # Step 0: Compute tau and check conditions
     tau = epsilon / np.cos(np.radians(theta2 + psi))
     if (theta2 + psi) >= 90 or tau > T:

@@ -10,7 +10,7 @@ def BIP_main(list_of_tuples_with_the_xy_cordinates = [(0, 0), (9, 0), (9, 9), (0
     pointInWalls = find_room2.find_room_frame(list_of_tuples_with_the_xy_cordinates)  # מיקומים אפשריים למצלמות
 
     # number of target positions- מספר עמדות יעד
-    NT = init.sum_the_target_position(pointInWalls)
+    NT, listOfTargets= init.sum_the_target_position(pointInWalls)
 
     # number of camera positions- מספר עמדות המצלמה
     NC = init.sum_the_cameras_positions(pointInWalls)
@@ -18,6 +18,7 @@ def BIP_main(list_of_tuples_with_the_xy_cordinates = [(0, 0), (9, 0), (9, 9), (0
 
     # number of vertical orientations- מספר כיוונים אנכיים0
     numOfVerticalOriens = []
+    NvD = 1
     if dataCameras != None:
         for i in range(len(dataCameras)):
             theVer = dataCameras[i]
@@ -25,28 +26,36 @@ def BIP_main(list_of_tuples_with_the_xy_cordinates = [(0, 0), (9, 0), (9, 9), (0
     if (numOfVerticalOriens != []):
         numOfVerticalOriens.sort(reverse=True)
         NvD = numOfVerticalOriens.pop()
-    # print(NvD)
 
     # number of heights- מספר גבהים
     heightOfRoomChosenByUser *= 100
+    NE = 0
     if (heightOfRoomChosenByUser > 280):
         NE = 1
     else:
         NE = 280 - heightOfRoomChosenByUser
+    NE = int(NE)
 
     # number of camera types- מספר סוגי מצלמות
     NA = numOfCameras
 
     # number of horizontal orientations- מספר כיוונים אופקיים.
-
-    NhD = int(sum_of_horizontal_orientations(list_of_tuples_with_the_xy_cordinates, את הזווית האופקית המינימלית))
+    numOfHorizontalOriens = []
+    NhD = 1
+    if dataCameras != None:
+        for i in range(len(dataCameras)):
+            theVer = dataCameras[i]
+            numOfHorizontalOriens.append(theVer.vertical_angle)
+    if (numOfHorizontalOriens != []):
+        numOfHorizontalOriens.sort()
+        NhD = numOfHorizontalOriens.pop()
+    NhD = int(init.sum_of_horizontal_orientations(list_of_tuples_with_the_xy_cordinates, NhD))
 
 
     # given minimal coverage rate- בהינתן שיעור כיסוי מינימלי
     CVR = 0.9
 
-
-    sol = solve_with_pulp.solve_with_pulp(NC=NC, NhD=NhD, NvD=NvD, NE=NE, NA=NA, NT=NT, CVR=CVR)
+    sol = solve_with_pulp.solve_with_pulp(NC=NC, NhD=NhD, NvD=NvD, NE=NE, NA=NA, NT=NT, CVR=CVR, listOfTargetPositions=listOfTargets)
 
 
 BIP_main()
