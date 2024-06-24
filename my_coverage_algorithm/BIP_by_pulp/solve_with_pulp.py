@@ -5,14 +5,14 @@ import constraints.constraintP10 as con10
 import optimize_object_pulp
 from my_coverage_algorithm import initilize_v_with_fov
 from my_coverage_algorithm.BIP_by_pulp import find_room2
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+#from flask import Flask, request, jsonify
+#from flask_cors import CORS
 # import cameras.retrieving_the_cameras_data as dataFuncs
 # from my_coverage_algorithm.BIP_by_pulp import find_room2
 # from cameras import Camera
-
-app = Flask(__name__)
-CORS(app)
+#
+# app = Flask(__name__)
+# CORS(app)
 
 def solve_with_pulp(NC, NhD, NvD, NE, NA, NT, CVR, listOfTargetPositions):
     # Define the problem

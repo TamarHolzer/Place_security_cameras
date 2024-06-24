@@ -2,7 +2,24 @@ import solve_with_pulp
 import cameras.retrieving_the_cameras_data as dataFuncs
 from my_coverage_algorithm.BIP_by_pulp import find_room2
 from my_coverage_algorithm import Initialize_the_quantity_variable as init
+from flask import Flask, request, jsonify
 
+app = Flask(__name__)
+
+@app.route("/", methods=["POST"])
+def hello_world():
+    name = request.json["name"]
+    return f"Hello, World {name}"
+
+@app.route("/bipAlgorithm",methods=["POST"])
+def main():
+    list_of_rooms = request.json["listOfRooms"]
+
+    # return jsonify({
+    #     "room": listOfRooms
+    # })
+
+# @app.route("/bipAlgorithm", methods=["POST"])
 def BIP_main(list_of_tuples_with_the_xy_cordinates = [(0, 0), (9, 0), (9, 9), (0, 9)], heightOfRoomChosenByUser = 2.50):#x,v,y,nc, nhd, nvd, ne, na,nt
 
     #שליפת נתוני המצלמות
@@ -16,7 +33,7 @@ def BIP_main(list_of_tuples_with_the_xy_cordinates = [(0, 0), (9, 0), (9, 9), (0
     NC = init.sum_the_cameras_positions(pointInWalls)
 
 
-    # number of vertical orientations- מספר כיוונים אנכיים0
+    # number of vertical orientations- מספר כיוונים אנכיים
     numOfVerticalOriens = []
     NvD = 1
     if dataCameras != None:
@@ -57,5 +74,7 @@ def BIP_main(list_of_tuples_with_the_xy_cordinates = [(0, 0), (9, 0), (9, 9), (0
 
     sol = solve_with_pulp.solve_with_pulp(NC=NC, NhD=NhD, NvD=NvD, NE=NE, NA=NA, NT=NT, CVR=CVR, listOfTargetPositions=listOfTargets)
 
+if __name__ == "__main__":
+    app.run(debug=True)
 
-BIP_main()
+# BIP_main()

@@ -23,32 +23,32 @@ def generate_boolean_matrix(target_matrix, fov_vertices):
     return bool_matrix
 
 
-def show_the_matrix(fov_vertices, target_matrix, bool_matrix):
-    #print("Boolean matrix representing whether the target is covered:")
-    #print(bool_matrix)
-
-    # Plotting the FOV trapezoid and the target matrix for visualization
-    vertices = np.array(fov_vertices)
-    vertices = np.append(vertices, [vertices[0]], axis=0)  # Close the trapezoid by repeating the first point
-
-    plt.figure()
-    plt.plot(vertices[:, 0], vertices[:, 1], marker='o')
-    plt.fill(vertices[:, 0], vertices[:, 1], alpha=0.3)
-    plt.title('Field of View (FOV) Trapezoid')
-    plt.xlabel('X-coordinate (m)')
-    plt.ylabel('Y-coordinate (m)')
-    plt.grid(True)
-
-    # Plot the target matrix points
-    for i in range(target_matrix.shape[0]):
-        for j in range(target_matrix.shape[1]):
-            if bool_matrix[i, j]:
-                plt.plot(j, i, 'ro')  # Red dot if the point is covered
-            else:
-                plt.plot(j, i, 'bo')  # Blue dot if the point is not covered
-
-    plt.axis('equal')
-    plt.show()
+# def show_the_matrix(fov_vertices, target_matrix, bool_matrix):
+#     #print("Boolean matrix representing whether the target is covered:")
+#     #print(bool_matrix)
+#
+#     # Plotting the FOV trapezoid and the target matrix for visualization
+#     vertices = np.array(fov_vertices)
+#     vertices = np.append(vertices, [vertices[0]], axis=0)  # Close the trapezoid by repeating the first point
+#
+#     plt.figure()
+#     plt.plot(vertices[:, 0], vertices[:, 1], marker='o')
+#     plt.fill(vertices[:, 0], vertices[:, 1], alpha=0.3)
+#     plt.title('Field of View (FOV) Trapezoid')
+#     plt.xlabel('X-coordinate (m)')
+#     plt.ylabel('Y-coordinate (m)')
+#     plt.grid(True)
+#
+#     # Plot the target matrix points
+#     for i in range(target_matrix.shape[0]):
+#         for j in range(target_matrix.shape[1]):
+#             if bool_matrix[i, j]:
+#                 plt.plot(j, i, 'ro')  # Red dot if the point is covered
+#             else:
+#                 plt.plot(j, i, 'bo')  # Blue dot if the point is not covered
+#
+#     plt.axis('equal')
+#     plt.show()
 
 
 def initilize_v_with_fov(dictionary_of_the_counters_paramerters, list_of_target_psitions):
@@ -163,47 +163,47 @@ def generate_boolean_matrix(target_matrix, fov_vertices):
 
     return bool_matrix
 
-
-# Example usage with valid parameters
-epsilon = 7  # height (m)
-theta1 = 60  # horizontal angle of view (degrees) גודל הזווית של מצלמה!!!!
-theta2 = 30  # vertical angle of view (degrees) - Adjusted to ensure the angle sum is < 90
-psi = 20  # vertical angle of the camera (degrees)
-phi = 0  # horizontal angle of the camera (degrees) הכיוון של המצלמה!!!!
-T = 60  # maximum recognition distance (m)
-x0 = 0  # camera installation x-coordinate (m)
-y0 = 0  # camera installation y-coordinate (m)
-
-fov_vertices = compute_fov(epsilon, theta1, theta2, psi, phi, T, x0, y0)
-print(f"FOV vertices: {fov_vertices}")
-
-# Define a target matrix (for example, a 10x10 grid)
-target_matrix = np.zeros((10, 10))
-
-# Generate the boolean matrix representing whether the target is covered
-bool_matrix = generate_boolean_matrix(target_matrix, fov_vertices)
-print("Boolean matrix representing whether the target is covered:")
-print(bool_matrix)
-
-# Plotting the FOV trapezoid and the target matrix for visualization
-vertices = np.array(fov_vertices)
-vertices = np.append(vertices, [vertices[0]], axis=0)  # Close the trapezoid by repeating the first point
-
-plt.figure()
-plt.plot(vertices[:, 0], vertices[:, 1], marker='o')
-plt.fill(vertices[:, 0], vertices[:, 1], alpha=0.3)
-plt.title('Field of View (FOV) Trapezoid')
-plt.xlabel('X-coordinate (m)')
-plt.ylabel('Y-coordinate (m)')
-plt.grid(True)
-
-# Plot the target matrix points
-for i in range(target_matrix.shape[0]):
-    for j in range(target_matrix.shape[1]):
-        if bool_matrix[i, j]:
-            plt.plot(j, i, 'ro')  # Red dot if the point is covered
-        else:
-            plt.plot(j, i, 'bo')  # Blue dot if the point is not covered
-
-plt.axis('equal')
-plt.show()
+#
+# # Example usage with valid parameters
+# epsilon = 7  # height (m)
+# theta1 = 60  # horizontal angle of view (degrees) גודל הזווית של מצלמה!!!!
+# theta2 = 30  # vertical angle of view (degrees) - Adjusted to ensure the angle sum is < 90
+# psi = 20  # vertical angle of the camera (degrees)
+# phi = 0  # horizontal angle of the camera (degrees) הכיוון של המצלמה!!!!
+# T = 60  # maximum recognition distance (m)
+# x0 = 0  # camera installation x-coordinate (m)
+# y0 = 0  # camera installation y-coordinate (m)
+#
+# fov_vertices = FOV.compute_fov(epsilon, theta1, theta2, psi, phi, T, x0, y0)
+# print(f"FOV vertices: {fov_vertices}")
+#
+# # Define a target matrix (for example, a 10x10 grid)
+# target_matrix = np.zeros((10, 10))
+#
+# # Generate the boolean matrix representing whether the target is covered
+# bool_matrix = generate_boolean_matrix(target_matrix, fov_vertices)
+# print("Boolean matrix representing whether the target is covered:")
+# print(bool_matrix)
+#
+# # Plotting the FOV trapezoid and the target matrix for visualization
+# vertices = np.array(fov_vertices)
+# vertices = np.append(vertices, [vertices[0]], axis=0)  # Close the trapezoid by repeating the first point
+#
+# plt.figure()
+# plt.plot(vertices[:, 0], vertices[:, 1], marker='o')
+# plt.fill(vertices[:, 0], vertices[:, 1], alpha=0.3)
+# plt.title('Field of View (FOV) Trapezoid')
+# plt.xlabel('X-coordinate (m)')
+# plt.ylabel('Y-coordinate (m)')
+# plt.grid(True)
+#
+# # Plot the target matrix points
+# for i in range(target_matrix.shape[0]):
+#     for j in range(target_matrix.shape[1]):
+#         if bool_matrix[i, j]:
+#             plt.plot(j, i, 'ro')  # Red dot if the point is covered
+#         else:
+#             plt.plot(j, i, 'bo')  # Blue dot if the point is not covered
+#
+# plt.axis('equal')
+# plt.show()

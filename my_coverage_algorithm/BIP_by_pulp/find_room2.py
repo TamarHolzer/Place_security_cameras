@@ -12,6 +12,7 @@ def find_line(x, y):
         distance_x = abs(x2 - x1)
         distance_y = abs(y2 - y1)
 
+
         # Determine the number of points to interpolate along the line
         num_points = int(max(distance_x, distance_y) * 2) + 1
 
@@ -172,5 +173,7 @@ def find_room_targets(walls):
 
     return intermediate_points
 
-#allCordinated = [[(0, 0), (0, 1), (0, 2), (0, 3)], [(5, 0), (8, 0), (9, 0),(10, 0)], [(8,8)]]
-#print(find_room_targets(allCordinated))
+
+
+allCordinated = [[(0, 0), (0, 1), (0, 2), (0, 3)], [(5, 0), (8, 0), (9, 0),(10, 0)], [(8,8)]]
+print(find_room_targets(allCordinated))
